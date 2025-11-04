@@ -50,7 +50,7 @@ npm (or yarn/pnpm)
 
 Clone the Repository:
 
-git clone [https://github.com/your-username/react-invoice-generator.git](https://github.com/your-username/react-invoice-generator.git)
+git clone [https://github.com/Paxton425/invoice-generator.git](https://github.com/Paxton425/invoice-generator.git)
 cd react-invoice-generator
 
 
