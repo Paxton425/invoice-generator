@@ -50,17 +50,17 @@ npm (or yarn/pnpm)
 
 Clone the Repository:
 
-git clone [https://github.com/Paxton425/invoice-generator.git](https://github.com/Paxton425/invoice-generator.git)
-cd react-invoice-generator
+_git clone [https://github.com/Paxton425/invoice-generator.git](https://github.com/Paxton425/invoice-generator.git)_
+_cd react-invoice-generator_
 
 
 
 
 ### Install Dependencies:
 
-npm install
+_npm install_
 # or
-yarn install
+_yarn install_
 
 
 
@@ -68,8 +68,8 @@ yarn install
 ### Run the Application:
 Start the local development server. The application will typically run at http://localhost:3000.
 
-npm run dev
+_npm run dev_
 # or
-yarn start
+_yarn start_
 
 
