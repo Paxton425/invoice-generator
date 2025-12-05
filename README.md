@@ -1,16 +1,81 @@
-# React + Vite
+🧾 React Invoice Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a modern, single-page application built with React and Vite for quickly generating professional, customizable invoices. It leverages Material-UI for robust components and Tailwind CSS for rapid, utility-first styling.
 
-Currently, two official plugins are available:
+✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Dynamic Item Management: Easily add, edit, and remove line items with automatic numbering.
 
-## React Compiler
+Real-time Calculation: Instantly calculates subtotals, taxes, discounts, and grand totals as you type.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Customizable Fields: Supports input fields for company/client details, invoice number, issue date, and due date.
 
-## Expanding the ESLint configuration
+Tax & Discount Handling: Dedicated fields for entering VAT, sales tax, or percentage/fixed discounts.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Print and Export: Dedicated "Print" functionality optimized for clean, professional PDF export (print-friendly CSS applied).
+
+Responsive Design: Optimized for use on desktop and tablet devices.
+
+🛠️ Tech Stack
+
+Framework: React
+
+Build Tool: Vite
+
+Styling & Utilities: Tailwind CSS
+
+UI Components: Material-UI (MUI)
+
+Language: JavaScript/TypeScript (assuming)
+
+🚀 Prerequisites
+
+Before you begin, ensure you have the following installed on your system:
+
+Node.js (LTS recommended)
+
+npm (usually comes with Node.js) or Yarn
+
+⚙️ Installation and Setup
+
+Follow these steps to get a development environment running:
+
+Clone the Repository:
+
+git clone [YOUR_REPO_URL]
+cd react-invoice-generator
+
+
+Install Dependencies:
+
+npm install
+# or
+yarn install
+
+
+Start the Development Server:
+
+npm run dev
+# or
+yarn dev
+
+
+The application should now be running locally, typically accessible at http://localhost:5173.
+
+🖥️ Usage
+
+Input Details: Fill in the company information, client details, and invoice metadata (number, dates).
+
+Add Items: Use the "Add Item" button to create new rows for goods or services. Enter the description, quantity, and unit price. The totals will update automatically.
+
+Configure Totals: Adjust the Tax Rate and Discount fields as needed.
+
+Print/Export: Click the Print button (or similar export icon). Your browser's print dialog will open, allowing you to either print the invoice or save it as a PDF document.
+
+🎨 Styling Notes
+
+This project uses a hybrid styling approach:
+
+Material-UI is used for core components (Buttons, TextFields, Data Grid, etc.) to ensure accessibility and consistent behavior.
+
+Tailwind CSS utility classes are applied directly to components and wrappers for fast, granular control over layout, spacing, colors, and responsive breakpoints.

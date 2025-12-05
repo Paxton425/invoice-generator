@@ -8,6 +8,7 @@ import '@fontsource/roboto/700.css';
 
 import InvoiceContextProvider from './Components/InvoiceContext';
 import InvoiceForm from './Components/InvoiceForm';
+import ImageSelector from './Components/ImageSelector'
 
 
 function App() {
@@ -15,20 +16,20 @@ function App() {
   return (
     <>
       <section className="header pt-3">
-        <h1 className='head text-3xl text-start items-start'>INVOICE GENERATOR</h1>
+        <h1 className='head text-3xl text-center lg:text-start'>INVOICE GENERATOR</h1>
       </section>
-      <section className="body bg-white my-2 p-2 w-full min-w-sm">
+      <section className="body bg-white my-2 p-2 w-full min-w-0">
+        <InvoiceContextProvider>
         <div className="invoice-card">
-          <div className='flex flex-row space-x-2 py-2 align-center'>
-            <div className='invoice-logo'>
-              <p className='text-[#7c7c7c] text-2xl ml-4 mt-4'>+Add Logo</p>
+          <div className='flex flex-col lg:flex-row space-x-2 py-2 align-center'>
+            <div className='logo-container'>
+              <ImageSelector />
             </div>
             <h2 className='text-5xl pt-2'>INVOICE</h2>
           </div>
-          <InvoiceContextProvider>
-            <InvoiceForm />
-          </InvoiceContextProvider>
+          <InvoiceForm />
         </div>
+        </InvoiceContextProvider>
       </section >
       <section className="footer">
         <p>© 2024 Invoice Generator. All rights reserved.</p>

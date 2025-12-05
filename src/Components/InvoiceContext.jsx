@@ -1,12 +1,13 @@
-import React, { createContext, useState, useCallback, useMemo } from "react";
+import React, { createContext, useState, useEffect,  useCallback, useMemo } from "react";
 
 export const InvoiceContext = createContext(null);
 
 function InvoiceContextProvider({ children }) {
     const defaultInvoiceData ={
+        logoImageUrl: '',
         currency: { code: 'ZAR', locale: 'en-RSA', name: 'South African Rand', symbol: 'R' }, 
         invoiceDetails: {
-            invoiceNumber: '',
+            invoiceNumber: `INV-${new Date().getFullYear()}-001`,
             invoiceDate: new Date().toISOString().split('T')[0],
             dueDate: new Date().toISOString().split('T')[0], 
             company: {
@@ -31,17 +32,21 @@ function InvoiceContextProvider({ children }) {
             additionalNote:'',
         },
         tax: {
-            taxRate: 0,
-            taxAmount:0,
+            taxRate: 0.00,
+            taxAmount:0.00,
         },
         discount:{
-            discountRate:0,
-            discount:0,
-            },
-        totalAmount: 0,
+            discountRate:0.00,
+            discount:0.00,
+        },
+        totalAmount: 0.00,
     }
 
     const [invoiceData, setInvoiceData] = useState(defaultInvoiceData);
+
+    useEffect(()=>{
+        console.log('curr data', invoiceData)
+    },[invoiceData])
 
     // Memoize computed values
     const computedValues = useMemo(() => {
@@ -133,22 +138,105 @@ function InvoiceContextProvider({ children }) {
     }), [computedValues.total]);
 
     const contextValue = useMemo(() => ({
+        logoImageUrl: {
+            getImageUrl: ()=> invoiceData.logoImageUrl,
+            setImageUrl: (url)=> updateInvoiceData({ logoImageUrl: url })
+        },
         currency,
         invoiceDetails: {
             getDetails: ()=>(invoiceData.invoiceDetails),
-            setDetails: (details) => updateInvoiceData({ invoiceDetails: details })
+            invoiceNumber:{
+                get: () => invoiceData.invoiceDetails.invoiceNumber,
+                set: (value)=> updateInvoiceData({
+                    invoiceDetails: { 
+                        ...invoiceData.invoiceDetails,
+                        invoiceNumber: value 
+                    }
+                }),
+            },
+            Dates:{
+                invoiceDate: {
+                    get: () => invoiceData.invoiceDetails.invoiceDate,
+                    set: (dateValue) => updateInvoiceData({ invoiceDate: dateValue}),
+                },
+                dueDate: {
+                    get: () => invoiceData.invoiceDetails.dueDate,
+                    set: (dateValue) => updateInvoiceData({ dueDate: dateValue}),
+                }
+            },
+            companyDetails: {
+                get: () => invoiceData.invoiceDetails.company,
+                set: (field, value) => {
+                    updateInvoiceData({
+                        invoiceDetails: { 
+                            ...invoiceData.invoiceDetails,
+                            company: {
+                                ...invoiceData.invoiceDetails.company,
+                                [field] : value,
+                            }
+                            
+                        }
+                    })
+                },
+            },
+            clientDetails:{
+                get: ()=>(invoiceData.invoiceDetails.client),
+                set: (field, value) => {
+                    updateInvoiceData({
+                        invoiceDetails: { 
+                            ...invoiceData.invoiceDetails,
+                            client: {
+                                ...invoiceData.invoiceDetails.client,
+                                [field] : value,
+                            }
+                        }
+                    })
+                },
+            }
         },
         items,
         tax,
         discount,
         totalAmount,
-        notes: {
-            getNotes: invoiceData.note,
-            setNotes: (note) => updateInvoiceData({ note })
+        note: {
+            additionalNotes: {
+                get: () => invoiceData.note.additionalNote,
+                set: (noteValue) => updateInvoiceData({ 
+                    note: {
+                        additionalNote: noteValue,
+                        terms: invoiceData.note.terms
+                    }
+                })
+            },
+            terms: {
+                get: () => invoiceData.note.terms,
+                set : (terms) => updateInvoiceData({
+                    note: {
+                        additionalNote: invoiceData.note.additionalNote,
+                        terms: terms,
+                    }
+                })
+            }
         },
-        computedValues, // Provide computed values
+        computedValues, 
         reset: () => setInvoiceData(defaultInvoiceData)
     }), [
+        invoiceData.logoImageUrl,
+        currency,
+        invoiceData.invoiceDetails,
+        invoiceData.note,
+        items,
+        tax,
+        discount,
+        totalAmount,
+        computedValues,
+        updateInvoiceData
+    ]);
+
+    useEffect(()=>{
+        console.log('new context updates', invoiceData)
+    },[
+        invoiceData.logoImageUrl,
         currency,
         invoiceData.invoiceDetails,
         invoiceData.note,

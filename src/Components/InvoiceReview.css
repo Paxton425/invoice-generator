@@ -1,0 +1,50 @@
+@media print {
+  .print-ignore {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+
+  html, body {
+    width: 210mm; /* A4 width */
+    height: 297mm; /* A4 height */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .invoice-review-container {
+    /* Width = A4 width - (left margin + right margin) */
+    width: calc(210mm - 20mm) !important; /* 20mm total side margins */
+    
+    /* Height = A4 height - (top margin + bottom margin) */
+    min-height: calc(297mm - 35mm) !important; /* 35mm total vertical margins */
+    
+    margin: 15mm 10mm 20mm 10mm !important; /* Match @page margins */
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .from-to-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .notes-totals {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100%;
+  }
+
+  .notes-terms {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 60% !important;
+  }
+
+  .totals {
+    width: 50% !important;
+  }
+}
+ 

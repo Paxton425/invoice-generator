@@ -32,14 +32,16 @@ function CurrencySelector() {
     }
 
     return (
-        <div className='flex items-start max-w-[250px]'>
+        <div className='flex items-start px-2 max-w-[250px]'>
             <FormControl>
                 <InputLabel id="select-label">Currency</InputLabel>
                 <Select
                     labelId="select-label"
                     id="currency-select"
                     label="Currency"
+                    variant='standard'
                     value={currency.code} // Use the currency code for value
+                    style={{minWidth: '210px'}}
                     onChange={(event) => onCurrencyChange(getFormatObject(event.target.value))}
                 >
                     {CURRENCY_FORMATS.map((format) => (

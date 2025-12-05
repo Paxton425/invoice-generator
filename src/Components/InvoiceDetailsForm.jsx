@@ -3,24 +3,26 @@ import TextField from '@mui/material/TextField';
 
 function InvoiceDetailsForm({ id, formTitle, name, address, onChange }) {
   return (
-    <div className='flex flex-col items-center grid-col col-span-1'>
+    <div className='flex flex-col items-center'>
         <h4 className="text-2xl my-2">{formTitle}</h4>
         <TextField 
             id={`${id}-name`} 
+            className='w-full'
             label="Name" 
-            value={name}
+            defaultValue={name}
             variant="outlined" 
             size="small"
-            onChange={onChange} />
+            onChange={(e) => {onChange('name', e.target.value)}} />
         <TextField 
             id={`${id}-address`} 
+            className='w-full'
             label="Address" 
-            value={address}
+            defaultValue={address}
             variant="outlined" 
             size="small" 
             multiline
             rows={4}
-            onChange={onChange} />
+            onChange={(e) => {onChange('address', e.target.value)}} />
     </div>
   )
 }
